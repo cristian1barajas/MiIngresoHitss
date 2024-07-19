@@ -1,0 +1,43 @@
+﻿@model MiIngresoHitss.Data.ProductoListaPrecio
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>ProductoListaPrecio</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="ProductoID" class="control-label"></label>
+                <input asp-for="ProductoID" class="form-control" />
+                <span asp-validation-for="ProductoID" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ListaPrecioID" class="control-label"></label>
+                <input asp-for="ListaPrecioID" class="form-control" />
+                <span asp-validation-for="ListaPrecioID" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Precio" class="control-label"></label>
+                <input asp-for="Precio" class="form-control" />
+                <span asp-validation-for="Precio" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

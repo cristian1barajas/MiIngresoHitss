@@ -1,0 +1,31 @@
+﻿@model IEnumerable<MiIngresoHitss.Data.Producto>
+
+@{
+    ViewData["Title"] = "Productos";
+}
+
+<h1>Productos</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Descripción</th>
+            <th>Precio</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var producto in Model)
+        {
+            <tr>
+                <td>@producto.Nombre</td>
+                <td>@producto.Descripcion</td>
+                <td>@producto.Precio.ToString("C")</td>
+                <td>
+                    <a asp-controller="Carrito" asp-action="AgregarAlCarrito" asp-route-id="@producto.ProductoID" class="btn btn-success">Agregar al Carrito</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

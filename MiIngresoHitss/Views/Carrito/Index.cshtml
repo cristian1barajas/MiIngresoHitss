@@ -1,0 +1,44 @@
+﻿@model IEnumerable<MiIngresoHitss.Models.CarritoItem>
+
+@{
+    ViewData["Title"] = "Carrito de Compras";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Producto</th>
+            <th>Precio</th>
+            <th>Cantidad</th>
+            <th>Total</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model != null && Model.Any())
+        {
+            foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.Nombre</td>
+                    <td>@item.Precio.ToString("C")</td>
+                    <td>@item.Cantidad</td>
+                    <td>@(item.Precio * item.Cantidad).ToString("C")</td>
+                    <td>
+                        <a asp-action="Eliminar" asp-route-id="@item.ProductoID" class="btn btn-danger">Eliminar</a>
+                    </td>
+                </tr>
+            }
+        }
+        else
+        {
+            <tr>
+                <td colspan="5" class="text-center">No hay productos en el carrito.</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<a asp-action="Index" asp-controller="Productos" class="btn btn-primary">Seguir Comprando</a>

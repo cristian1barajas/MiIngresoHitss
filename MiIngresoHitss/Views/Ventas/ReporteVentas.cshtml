@@ -1,0 +1,48 @@
+﻿@model IEnumerable<MiIngresoHitss.Data.Venta>
+
+@{
+    ViewData["Title"] = "Reporte de Ventas";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<form asp-action="GenerarReporte" method="post" class="form-inline">
+    <div class="form-group">
+        <label for="fechaInicio">Fecha Inicio:</label>
+        <input type="date" class="form-control" id="fechaInicio" name="fechaInicio" required />
+    </div>
+    <div class="form-group">
+        <label for="fechaFin">Fecha Fin:</label>
+        <input type="date" class="form-control" id="fechaFin" name="fechaFin" required />
+    </div>
+    <button type="submit" class="btn btn-primary">Generar Reporte</button>
+</form>
+
+@if (Model != null && Model.Any())
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Fecha de Venta</th>
+                <th>Producto</th>
+                <th>Cliente</th>
+                <th>Cantidad</th>
+                <th>Total</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var venta in Model)
+            {
+                <tr>
+                    <td>@venta.FechaVenta.ToString("dd/MM/yyyy")</td>
+                    <td>@venta.Cantidad</td>
+                    <td>@venta.Total.ToString("C")</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>No se encontraron ventas en el rango de fechas seleccionado.</p>
+}
